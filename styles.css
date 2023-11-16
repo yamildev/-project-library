@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header {
+    grid-area: header;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 40px;
+    background-color: rgb(165, 164, 164);   
+}
+
+body {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    
+
+
+    background: url(./body-background.jpg);
+    background-size: cover;
+    overflow: auto;
+
+}
+header {
+    grid-area: header;
+}
+#sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    grid-area: main;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+}
+#addBookBtn {
+    width: 100px;
+    /*align-self: center;*/
+}
+
+#form {
+    /*align-self: center;*/
+    /*display: none; 
+    /*Agregar un listener al btn new book, que al tocarlo, ponga
+    el display del form en 'block' y cuando se le da submit,
+    el display vuelva a 'none'*/
+    display: none;
+    position: relative;
+    margin-top: 10px;
+}
+
+#card-container {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 50vw;
+    height  : 50vh;
+    align-content: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    background-color: #0000ff;
+}
+
+
+.card{
+    position: relative;
+
+    flex: 1 0 250px;
+    max-width: 250px;
+    max-height: 250px;
+    text-align: left;
+    overflow:auto;
+    border: 5px solid yellow;
+    background-color: green;
+}
+.delBookBtn {
+    
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+}
+#footer {
+    grid-area: footer;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 40px;
+    background-color: rgb(165, 164, 164);
+}
+/*
+const parent = document.getElementById('card-container')
+const card = document.createElement('div');
+card.classList.add('card');
+parent.appendChild(card);
+*/

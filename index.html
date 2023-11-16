@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./script.js"></script>
+    <script defer src="./eventListeners.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    
+</head>
+    <body> <!--title, author, pages, read-->
+        <header id="header">
+            <p>header</p>
+        </header>
+
+        <main>
+            <button id='addBookBtn'type="button">+ add book</button>
+
+            <form action="#" id="form">
+                <div class="form-row">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                </div>
+                <div class="form-row">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author">
+                </div>
+                <div class="form-row">
+                    <label for="pages">ages</label>
+                    <input type="number" id="pages" name="pages">
+                </div>
+                <div class="form-row">
+                    <label for="read">Read</label>
+                    <input type="checkbox" id="read" name="read">
+                    </div>
+                <button type="submit" id='submit-button'>SUBMIT</button>
+            </form>
+        <div id="card-container">
+            
+            <div class="card">
+                <p>Title: 1</p>
+                <p>Author: 1</p>
+                <p>Pages: 1</p>
+                <p>Read: false</p>
+            <button type='button' id="deleteBookBtn">x</button>
+            </div>
+            
+        </div>
+
+        </main>
+        
+
+           
+
+
+        <footer id="footer">
+            <p>footer</p>
+        </footer>
+    </body>
+</html>
