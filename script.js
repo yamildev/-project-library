@@ -19,7 +19,6 @@ class Book {
 
 // organizar nomenclaturas, por (library > book) || (parent > child)
 Book.prototype.renderizeBook = function () {
-  let cardElements = [];
   // create card element and customize 
   const card = (() => {
     const card = document.createElement('div');
@@ -27,7 +26,7 @@ Book.prototype.renderizeBook = function () {
     card.setAttribute('data-index', bookIndex); 
     return card;
   })();
-  // create card element and customize 
+  // create delete button element for stored books 
   const delBtn = (() => {
     const btn = document.createElement('button');
     btn.textContent = 'x'
@@ -35,7 +34,8 @@ Book.prototype.renderizeBook = function () {
     btn.setAttribute('type', 'button');
     return btn;
   })();
-  
+
+
   //function: create paragraph and text content attribute
   function createParagraph (string) {
     const paragraph = document.createElement('p');
@@ -48,10 +48,13 @@ Book.prototype.renderizeBook = function () {
   const pagesElement = createParagraph(`Pages: ${this.pages}`);
   const readElement = createParagraph(`Read: ${this.read}`);
   
-  cardElements = [titleElement, authorElement, pagesElement, readElement, delBtn];   
+  const cardElements = [];
+  cardElements.push(titleElement, authorElement, pagesElement, readElement, delBtn);;   
   cardElements.forEach(element => card.appendChild(element));
   cardParent.appendChild(card);
-  //delBtn.addEventListener('click', handleDelBtn)
+  
+  //delete button in cards. 
+  delBtn.addEventListener('click', handleDelBtn)  
   function handleDelBtn () {
     //store reference to parent 'card' and then stores their data-index value;
     const card = delBtn.parentNode;
@@ -60,7 +63,7 @@ Book.prototype.renderizeBook = function () {
     delete library[index] 
     };
 };
-
+//add an eventListener to the botton, when the event runs, 
 addBookBtn.addEventListener('click', handleAddBtn);
 function handleAddBtn () {
   form.style.display = 'block'; 
