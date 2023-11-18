@@ -5,8 +5,8 @@ const authorField = document.getElementById('author');
 const pagesField = document.getElementById('pages');
 const readField = document.getElementById('read');
 const addBookBtn = document.getElementById('addBookBtn');
-const library = [];
-const bookIndex = library.length;
+let library = [];
+let bookIndex = null;
 
 class Book {
   constructor(title, author, pages, read) {
@@ -18,11 +18,12 @@ class Book {
 }
 
 // organizar nomenclaturas, por (library > book) || (parent > child)
-Book.prototype.renderizeBook = function () {
+Book.prototype.renderBook = function () {
   // create card element and customize 
   const card = (() => {
     const card = document.createElement('div');
     card.classList.add('card');
+    bookIndex = library.length -1;
     card.setAttribute('data-index', bookIndex); 
     return card;
   })();
@@ -90,7 +91,7 @@ function handleSubmit (event) {
 
     hideForm.call(form);
     resetFormFields(titleField, authorField, pagesField, readField);
-    library[library.length -1].renderizeBook();
+    library[library.length -1].renderBook();
   };
 };
 
