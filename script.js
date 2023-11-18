@@ -7,7 +7,7 @@ const readField = document.getElementById('read');
 const addBookBtn = document.getElementById('addBookBtn');
 let library = [];
 let bookIndex = null;
-
+//  CARD ELEMENTS
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;   
@@ -16,7 +16,6 @@ class Book {
     this.read = read;  
   }
 }
-
 // organizar nomenclaturas, por (library > book) || (parent > child)
 Book.prototype.renderBook = function () {
   // create card element and customize 
