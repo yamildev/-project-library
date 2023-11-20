@@ -1,13 +1,20 @@
-const form = document.getElementById('form');
+
+/*          FORM FIELDS       */
+const getForm = document.getElementById('form');
+const getTitle = document.getElementById('title');
+const getAuthor = document.getElementById('author');
+const getPagesField = document.getElementById('pages');
+const getIsReadField = document.getElementById('read');
+
+
 const cardParent = document.getElementById('card-container')
-const titleField = document.getElementById('title');
-const authorField = document.getElementById('author');
-const pagesField = document.getElementById('pages');
-const readField = document.getElementById('read');
 const addBookBtn = document.getElementById('addBookBtn');
+
+
 let library = [];
 let bookIndex = null;
-//  CARD ELEMENTS
+
+/*            Data structure            */
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;   
@@ -16,9 +23,9 @@ class Book {
     this.read = read;  
   }
 }
-// organizar nomenclaturas, por (library > book) || (parent > child)
+/*          add function to render books in Book prototype             */
 Book.prototype.renderBook = function () {
-  // create card element and customize 
+  /*          card element          */ 
   const card = (() => {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -26,7 +33,7 @@ Book.prototype.renderBook = function () {
     card.setAttribute('data-index', bookIndex); 
     return card;
   })();
-  // create delete button element for stored books 
+  /*          create and customize delBtn            */ 
   const delBtn = (() => {
     const btn = document.createElement('button');
     btn.textContent = 'x'
@@ -34,26 +41,24 @@ Book.prototype.renderBook = function () {
     btn.setAttribute('type', 'button');
     return btn;
   })();
-
-
   //function: create paragraph and text content attribute
   function createParagraph (string) {
     const paragraph = document.createElement('p');
     paragraph.textContent = string;
     return paragraph;
   }
-  //create card childs elements
+  /*          create book info elements         */
   const titleElement = createParagraph(`Title: ${this.title}`);
   const authorElement = createParagraph(`Author: ${this.author}`);
   const pagesElement = createParagraph(`Pages: ${this.pages}`);
   const readElement = createParagraph(`Read: ${this.read}`);
-  
+  /*          appends elements to its parten Card          */ 
   const cardElements = [];
   cardElements.push(titleElement, authorElement, pagesElement, readElement, delBtn);;   
   cardElements.forEach(element => card.appendChild(element));
   cardParent.appendChild(card);
   
-  //delete button in cards. 
+  /*          delBtn listener         */ 
   delBtn.addEventListener('click', handleDelBtn)  
   function handleDelBtn () {
     //store reference to parent 'card' and then stores their data-index value;
@@ -63,7 +68,7 @@ Book.prototype.renderBook = function () {
     delete library[index] 
     };
 };
-//add an eventListener to the botton, when the event runs, 
+/*          hide form when usr press add book btn           */ 
 addBookBtn.addEventListener('click', handleAddBtn);
 function handleAddBtn () {
   form.style.display = 'block'; 
@@ -113,5 +118,3 @@ function addBookToLibrary (title, author, pages, read) {
   const tempBook = new Book(title, author, pages, read)
   library.push(tempBook);
 }
-
-

@@ -4,6 +4,13 @@
     padding: 0;
 }
 
+.btn-light-green {
+    background-color: #008000;
+}
+.btn-light-red {
+    background-color: #ff0000;
+}
+
 
 
 header {
@@ -51,7 +58,7 @@ main {
     align-items: center;
 
 }
-#addBookBtn {
+#addBtn {
     width: 100px;
     /*align-self: center;*/
 }
@@ -81,9 +88,8 @@ main {
 }
 
 
-.card{
+.book-card{
     position: relative;
-
     flex: 1 0 250px;
     max-width: 250px;
     max-height: 250px;
@@ -92,6 +98,13 @@ main {
     border: 5px solid yellow;
     background-color: green;
 }
+.description {
+
+}
+.action-btns {
+
+}
+
 .delBookBtn {
     
 }
