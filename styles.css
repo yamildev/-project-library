@@ -73,6 +73,12 @@ main {
     position: relative;
     margin-top: 10px;
 }
+#form .hide {
+    display: none;
+}
+#form .show {
+    display: block;
+}
 
 #card-container {
 
