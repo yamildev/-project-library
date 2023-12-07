@@ -1,15 +1,15 @@
 // select form & form field values
-const Form = document.getElementById('form').value;
-const Title = document.getElementById('title').value;
-const Author = document.getElementById('author').value;
-const Pages = document.getElementById('pages').value;
-const IsRead = document.getElementById('read').value;
+const form = document.getElementsByClassName('form');
+const formElement = form[0]
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const isRead = document.getElementById('isRead');
 // select UI elements 
 const cardContainer = document.getElementById('card-container');
 const addBtn = document.getElementById('addBtn');
 const submitBtn = document.getElementById('submit-button');
 
-// select #card-container innerHTML
 
 
 // Data structures 
@@ -23,7 +23,7 @@ class Book {
         this.title = title;   
         this.author = author;
         this.pages = pages;
-        this.isRead = read;  
+        this.isRead = isRead;  
       }
 }
 class Library {
@@ -32,7 +32,7 @@ class Library {
     }
 
     addBook(newBook) {
-        this.books.push[newBook]
+        this.books.push[newBook];
     }
 
     removeBook(title) {
@@ -49,73 +49,77 @@ class Library {
 }
 const library = new Library();
 
-function renderizeBook () {
-
-};
-
-/*
-Book instance = LIBRO (OBJETO)
-Crear instancia pasando como argumentos, los inputs
-Pasar (push) la instancia a Library.books ===> Libary.addBook(LIBRO)
-Recorrer el array, renderizando los libros en el DOM.
-
-*/
-
-// crear libro
-
-function createBook (bookData) {
-    return `
-        <div class="book-card animated">
-        <div class="description">
-            <h2>${bookData.title}</h2>
-            <h3>${bookData.author}</h3>
-            <p>${bookData.pages}</p>
-        </div>
-        <div class="action-btns">
-            <button class="read read-status success">Read</button>
-            <button class="delete">Delete</button>
-        </div>
-        <div class="status">Completed</div></div>
-    `;
-}
-/*
-0) cuando el usuario le da submit al form
-1) const book = new Book (title, author, pages, isRead)
-2) library.addBook(book)
-3) 
-x) innerHTML += createBook (book) , entre las ultimas acciones
-4) 
-
-
-}
-*/
 //addBtn event
-addBtn.addEventListener('click', addBtnHandler());
+addBtn.addEventListener('click', addBtnHandler);
 function addBtnHandler (){
+    console.log('addBtnHandler')
     toggleForm(); // => form[display = 'block']
 }
 
 // submit event
-submitBtn.addEventListener('click', submitHandler());
+submitBtn.addEventListener('click', submitHandler);
 function submitHandler () {
-    // create Book instance
-    const book = new Book (title, author, pages, isRead);
-    // add Book instance to Library instance
-    library.addBook(book);
-//  library.books.renderize(book); crear funcion en library que renderice los libros
+    if(formInputsAreValid(title.value, author.value, pages.value)) {
+        
+        resetDisplay(); // actualize GRID
+        const book = new Book(title.value, author.value, pages.value, isRead.checked);
+        library.books.push(book);
+        displayBooks();
+    
+        toggleForm(); // => form[display = 'none']
+        resetFormFields(title, author, pages, isRead);
+    
+    } else alert('Wrong or empty input/s');   
+};
 
-    toggleForm(); // => form[display = 'none']
+function createBook (bookData) {
+    return `
+        <div class="card">
+        <div class="description">
+            <h2>${this.title.value}</h2>
+            <h3>${this.author.value}</h3>
+            <p>Pages: ${this.pages.value}</p>
+        </div>
+        <div class="action-btns">
+            <button class="is-read">Not read</button>
+            <button class="delete">Delete</button>
+        </div>
+        <div class="status">On progress</div></div>
+    `;
 }
 
-// '
+function displayBooks () {
+    for (const books in library.books) {
+        //console.log(library.books[books])
+        cardContainer.innerHTML += createBook(library.books[books])
+    }    
+};
+
+function resetDisplay() {
+    cardContainer.innerHTML = ''; 
+};
+
 function toggleForm() {
-  // in addBtn Event will form[display = 'block']
-  // in submitBtn Event will form[display = 'none']
-    if (form.classList.contains('hide')) {
-      form.classList.remove('hide');
-      form.classList.add('show');
-    } else {
-      form.classList.remove('show');
-      form.classList.add('hide');
-    }
+    // in addBtn Event will form[display = 'block']
+    // in submitBtn Event will form[display = 'none']
+      if (formElement.classList.contains('hide')) {
+        formElement.classList.remove('hide');
+        formElement.classList.add('show');
+      } else {
+        formElement.classList.remove('show');
+        formElement.classList.add('hide');
+      }
+  }
+
+function formInputsAreValid (title, author, pages) {
+    return title && author && !isNaN(pages); 
 }
+function resetFormFields (title, author, pages, isReadCheckBox) {
+    title.value= '';
+    author.value = '';
+    pages.value= '';
+    isReadCheckBox.checked = false;
+}
+
+
+

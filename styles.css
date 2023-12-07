@@ -63,20 +63,19 @@ main {
     /*align-self: center;*/
 }
 
-#form {
+.form {
     /*align-self: center;*/
     /*display: none; 
     /*Agregar un listener al btn new book, que al tocarlo, ponga
     el display del form en 'block' y cuando se le da submit,
     el display vuelva a 'none'*/
-    display: none;
     position: relative;
     margin-top: 10px;
 }
-#form .hide {
+ .form.hide {
     display: none;
 }
-#form .show {
+.form.show {
     display: block;
 }
 
@@ -93,8 +92,7 @@ main {
     background-color: #0000ff;
 }
 
-
-.book-card{
+.card{
     position: relative;
     flex: 1 0 250px;
     max-width: 250px;
@@ -104,6 +102,17 @@ main {
     border: 5px solid yellow;
     background-color: green;
 }
+
+.action-btns > .is-read.no {
+    background: rgb(0, 93, 0);
+}
+.action-btns > .is-read.yes {
+    background: rgb(0, 196, 0);
+}
+.action-btns > .delete {
+    background: rgb(201, 0, 0);
+}
+
 .description {
 
 }
